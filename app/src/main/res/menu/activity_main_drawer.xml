@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_home"
+            android:title="Home" />
+    </group>
+
+    <item android:title="Data Diri Kelompok">
+        <menu>
+            <item
+                android:id="@+id/nav_quizone"
+                android:icon="@drawable/ic_playlist_add_check_black_24dp"
+                android:title="Khisan Ihza Wahyu Rifaldi" />
+            <item
+                android:id="@+id/nav_quiztwo"
+                android:icon="@drawable/ic_playlist_add_check_black_24dp"
+                android:title="Afrilia Sriwahyuni"/>
+            <item
+                android:id="@+id/nav_quizthree"
+                android:icon="@drawable/ic_playlist_add_check_black_24dp"
+                android:title="Satria Amogha Guna"/>
+            <item
+                android:id="@+id/nav_quizfour"
+                android:icon="@drawable/ic_playlist_add_check_black_24dp"
+                android:title="Erviansyah Fadly"/>
+        </menu>
+    </item>
+
+
+</menu>
