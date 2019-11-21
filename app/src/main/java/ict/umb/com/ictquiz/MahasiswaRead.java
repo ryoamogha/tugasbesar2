@@ -24,32 +24,32 @@ import java.util.List;
 
 import ict.umb.com.ictquiz.db.DBAdapter;
 
-public class MahasiswaRead extends AppCompatActivity implements
-        AdapterView.OnItemClickListener{
+public class MahasiswaRead extends AppCompatActivity implements AdapterView.OnItemClickListener{
     private ListView mListView;
     private CustomListAdapter adapter_off;
     private DBAdapter db;
-    private List<Mahasiswa> ListMobil = new ArrayList<Mahasiswa>();
+    private List<Mahasiswa> ListMahasiswa = new ArrayList<Mahasiswa>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mahasiswa_read);
         db = new DBAdapter(this);
-        adapter_off = new CustomListAdapter(this, ListMobil );
+        adapter_off = new CustomListAdapter(this, ListMahasiswa );
         mListView = (ListView) findViewById(R.id.lvMahasiswa);
         mListView.setAdapter(adapter_off);
         mListView.setOnItemClickListener(this);
         mListView.setClickable(true);
-        ListMobil.clear();
-        List<Mahasiswa> mobil = db.getAllMahasiswa();
-        for (Mahasiswa mb : mobil) {
-            Mahasiswa mhs = new Mahasiswa();
-            mhs.set_id_mahasiswa(mb.get_id_mahasiswa());
-            mhs.set_username(mb.get_username());
-            mhs.set_password(mb.get_password());
-            mhs.set_nama(mb.get_nama());
-            ListMobil.add(mhs);
-            if ((ListMobil.isEmpty()))
+        ListMahasiswa.clear();
+        List<Mahasiswa> mahasiswa = db.getAllMahasiswa();
+        for (Mahasiswa mhs : mahasiswa) {
+            Mahasiswa mh = new Mahasiswa();
+            mhs.set_id_mahasiswa(mh.get_id_mahasiswa());
+            mhs.set_nim(mh.get_nim());
+            mhs.set_username(mh.get_username());
+            mhs.set_password(mh.get_password());
+            mhs.set_nama(mh.get_nama());
+            ListMahasiswa.add(mhs);
+            if ((ListMahasiswa.isEmpty()))
                 Toast.makeText(MahasiswaRead.this, "Tidak ada data",
                         Toast.LENGTH_SHORT).show();
             else {
@@ -67,29 +67,25 @@ public class MahasiswaRead extends AppCompatActivity implements
         Intent goUpdel = new Intent(MahasiswaRead.this, MahasiswaUpDel.class);
         goUpdel.putExtra("Iid_mahasiswa", Sid_mahasiswa);
         goUpdel.putExtra("Iusername", Susername);
-        goUpdel.putExtra("Ijenis", Sjenis);
-        goUpdel.putExtra("Imerk", Smerk);
-        goUpdel.putExtra("Itahun_buat", Stahun_buat);
-        goUpdel.putExtra("Iwarna", Swarna);
+        goUpdel.putExtra("Ipassword", Spassword);
+        goUpdel.putExtra("Inama", Snama);
         startActivity(goUpdel);
     }
     @Override
     protected void onResume() {
         super.onResume();
-        ListMobil.clear();
+        ListMahasiswa.clear();
         mListView.setAdapter(adapter_off);
-        List<Mobil> mobil = db.ReadMobil();
-        for (Mobil mb : mobil) {
-            Mobil judulModel = new Mobil();
-            judulModel.set_id(mb.get_id());
-            judulModel.set_no_plat(mb.get_no_plat());
-            judulModel.set_jenis(mb.get_jenis());
-            judulModel.set_merk(mb.get_merk());
-            judulModel.set_tahun_buat(mb.get_tahun_buat());
-            judulModel.set_warna(mb.get_warna());
-            ListMobil.add(judulModel);
-            if ((ListMobil.isEmpty()))
-                Toast.makeText(MainRead.this, "Tidak ada data",
+        List<Mahasiswa> mahasiswa = db.getAllMahasiswa();
+        for (Mahasiswa mh : mahasiswa) {
+            Mahasiswa judulModel = new Mahasiswa();
+            judulModel.set_id_mahasiswa(mh.get_id_mahasiswa());
+            judulModel.set_username(mh.get_username());
+            judulModel.set_password(mh.get_password());
+            judulModel.set_nama(mh.get_nama());
+            ListMahasiswa.add(judulModel);
+            if ((ListMahasiswa.isEmpty()))
+                Toast.makeText(MahasiswaRead.this, "Tidak ada data",
                         Toast.LENGTH_SHORT).show();
             else {
             }

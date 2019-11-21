@@ -15,9 +15,9 @@ public class CustomListAdapter extends BaseAdapter {
     private Activity activity;
     private LayoutInflater inflater;
     private List<Mahasiswa> mahasiswaItems;
-    public CustomListAdapter(Activity activity, List<Mahasiswa> mobilItems) {
+    public CustomListAdapter(Activity activity, List<Mahasiswa> mahasiswaItems) {
         this.activity = activity;
-        this.mahasiswaItems = mobilItems;
+        this.mahasiswaItems = mahasiswaItems;
     }
     @Override
     public int getCount() {
@@ -39,12 +39,14 @@ public class CustomListAdapter extends BaseAdapter {
         if (convertView == null)
             convertView = inflater.inflate(R.layout.lists_mahasiswa, null);
         TextView id_mahasiswa = (TextView) convertView.findViewById(R.id.tv_id_mahasiswa);
+        TextView nim = (TextView) convertView.findViewById(R.id.tv_nim);
         TextView username = (TextView) convertView.findViewById(R.id.tv_username);
         TextView password = (TextView) convertView.findViewById(R.id.tv_password);
         TextView nama = (TextView) convertView.findViewById(R.id.tv_nama);
         ImageView imageView = (ImageView) convertView.findViewById(R.id.iconid);
         Mahasiswa m = mahasiswaItems.get(position);
         id_mahasiswa.setText("ID Mahasiswa : "+ m.get_id_mahasiswa());
+        nim.setText("NIM : "+ m.get_nim());
         username.setText("Username : "+ m.get_username());
         password.setText("Password : "+ m.get_password());
         nama.setText("Nama : "+ m.get_nama());

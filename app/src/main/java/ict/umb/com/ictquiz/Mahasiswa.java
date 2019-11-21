@@ -1,9 +1,10 @@
 package ict.umb.com.ictquiz;
 
 public class Mahasiswa {
-        private String _id_mahasiswa, _username, _password, _nama;
-        public Mahasiswa (String id_mahasiswa, String username, String password, String nama) {
+        private String _id_mahasiswa, _nim, _username, _password, _nama;
+        public Mahasiswa (String id_mahasiswa, String nim, String username, String password, String nama) {
             this._id_mahasiswa = id_mahasiswa;
+            this._nim = nim;
             this._username = username;
             this._password = password;
             this._nama = nama;
@@ -15,6 +16,13 @@ public class Mahasiswa {
         }
         public void set_id_mahasiswa(String _id_mahasiswa) {
             this._id_mahasiswa = _id_mahasiswa;
+        }
+
+        public String get_nim() {
+            return _nim;
+        }
+        public void set_nim(String _nim) {
+            this._nim = _nim;
         }
         public String get_username() {
             return _username;

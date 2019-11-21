@@ -37,6 +37,7 @@ public class DBAdapter extends SQLiteOpenHelper {
 
     // Table mahasiswa
     private static final String ID_MAHASISWA = "id_mahasiswa";
+    private static final String NIM = "nim";
     private static final String USERNAME = "username";
     private static final String PASSWORD = "password";
     private static final String NAMA = "nama";
@@ -50,27 +51,33 @@ public class DBAdapter extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         myDatabase=db;
-        String sql = "CREATE TABLE IF NOT EXISTS " + TABLE_QUESTION + " ( "
+        String sql_tb_soal = "CREATE TABLE IF NOT EXISTS " + TABLE_QUESTION + " ( "
                 + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + KEY_QUESION
                 + " TEXT, " + KEY_ANSWER+ " TEXT, "+KEY_OPTA +" TEXT, "
                 +KEY_OPTB +" TEXT, "+KEY_OPTC +" TEXT, "+KEY_OPTD+" TEXT)";
+        String sql_tb_mahasiswa = "CREATE TABLE IF NOT EXISTS " + TABLE_MAHASISWA + " ( "
+                + ID_MAHASISWA + " INTEGER PRIMARY KEY AUTOINCREMENT, " + NIM
+                + " TEXT, " + USERNAME+ " TEXT, " +PASSWORD+ " TEXT, "
+                +NAMA +" TEXT)";
 
-        db.execSQL(sql);
+        db.execSQL(sql_tb_soal);
+        db.execSQL(sql_tb_mahasiswa);
 
         addQuestions();
     }
 
-    private static final String TABEL_MAHASISWA = "CREATE TABLE " +
-            TABLE_MAHASISWA + "("
+    /*private static final String CREATE_TABEL_MAHASISWA = "CREATE TABLE " + "("
             + ID_MAHASISWA + " INTEGER PRIMARY KEY ,"
+            + NIM + " TEXT ,"
             + USERNAME + " TEXT,"
             + PASSWORD + " TEXT,"
-            + NAMA + " TEXT," + ")";
+            + NAMA + " TEXT," + ")";*/
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldV, int newV) {
         // Drop older table if existed
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_QUESTION);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_MAHASISWA);
 
         // Create tables again
         onCreate(db);
@@ -117,16 +124,17 @@ public class DBAdapter extends SQLiteOpenHelper {
 
     public List<Mahasiswa> getAllMahasiswa() {
         List<Mahasiswa> MhsList = new ArrayList<Mahasiswa>();
-        String selectQuery = "SELECT * FROM " + TABLE_MAHASISWA;
+        String selectQuery = "SELECT  * FROM " + TABLE_MAHASISWA;
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
         if (cursor.moveToFirst()) {
             do {
                 Mahasiswa mhs = new Mahasiswa();
                 mhs.set_id_mahasiswa(cursor.getString(0));
-                mhs.set_username(cursor.getString(1));
-                mhs.set_password(cursor.getString(2));
-                mhs.set_nama(cursor.getString(3));
+                mhs.set_nim(cursor.getString(1));
+                mhs.set_username(cursor.getString(2));
+                mhs.set_password(cursor.getString(3));
+                mhs.set_nama(cursor.getString(4));
                 MhsList.add(mhs);
             } while (cursor.moveToNext());
         }
@@ -138,6 +146,7 @@ public class DBAdapter extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(ID_MAHASISWA, mdNotif.get_id_mahasiswa());
+        values.put(NIM, mdNotif.get_nim());
         values.put(USERNAME, mdNotif.get_username());
         values.put(PASSWORD, mdNotif.get_password());
         values.put(NAMA, mdNotif.get_nama());
@@ -148,11 +157,11 @@ public class DBAdapter extends SQLiteOpenHelper {
     public int UpdateMahasiswa(Mahasiswa mdNotif) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(ID_MAHASISWA, mdNotif.get_id_mahasiswa());
+        values.put(NIM, mdNotif.get_nim());
         values.put(USERNAME, mdNotif.get_username());
         values.put(PASSWORD, mdNotif.get_password());
         values.put(NAMA, mdNotif.get_nama());
-        return db.update(TABLE_QUESTION, values, ID_MAHASISWA + " = ?",
+        return db.update(TABLE_MAHASISWA, values, ID_MAHASISWA + " = ?",
                 new String[]{String.valueOf(mdNotif.get_id_mahasiswa())});
     }
 

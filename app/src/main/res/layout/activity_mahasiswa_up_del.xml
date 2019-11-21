@@ -14,32 +14,38 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Tambah Data Mahasiswa" />
+        android:text="Edit dan Hapus Data Mahasiswa" />
     <EditText
-        android:id="@+id/create_nim"
+        android:id="@+id/updel_nim"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:hint="NIM" />
     <EditText
-        android:id="@+id/create_username"
+        android:id="@+id/updel_username"
         android:hint="Username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <EditText
-        android:id="@+id/create_password"
+        android:id="@+id/updel_password"
         android:hint="Password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <EditText
-        android:id="@+id/create_nama"
+        android:id="@+id/updel_nama"
         android:hint="Nama"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <Button
-        android:id="@+id/create_btn"
+        android:id="@+id/updel_btn_edit"
         android:layout_marginTop="20dp"
-        android:text="Tambah"
+        android:text="Edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/updel_btn_hapus"
+        android:layout_marginTop="20dp"
+        android:text="Hapus"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 </LinearLayout>

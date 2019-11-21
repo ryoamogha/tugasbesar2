@@ -14,6 +14,7 @@
     <string name="str_viewans">Hasil Jawaban</string>
     <string name="str_viewmahasiswa">List Mahasiswa</string>
     <string name="label_id_mahasiswa">Id Mahasiswa</string>
+    <string name="label_nim">NIM</string>
     <string name="label_username">Username</string>
     <string name="label_password">Password</string>
     <string name="label_nama">Nama</string>
