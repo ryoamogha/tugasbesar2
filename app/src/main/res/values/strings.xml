@@ -6,11 +6,17 @@
     <string name="banner_ad_unit_id">use here admob publisher ID if you valid acount with google</string>
     <string name="txt_start_page">Android Quiz Applications Tutorial </string>
     <string name="str_start_now">Mulai</string>
+    <string name="str_login">Login</string>
     <string name="str_next">Next</string>
     <string name="str_done">Done</string>
     <string name="str_results">Results</string>
     <string name="str_gotohome">Go to Home</string>
     <string name="str_viewans">Hasil Jawaban</string>
+    <string name="str_viewmahasiswa">List Mahasiswa</string>
+    <string name="label_id_mahasiswa">Id Mahasiswa</string>
+    <string name="label_username">Username</string>
+    <string name="label_password">Password</string>
+    <string name="label_nama">Nama</string>
     <string name="basisdata">Basis Data</string>
     <string name="ilmukomputer">Ilmu Komputer</string>
     <string name="metabolismesel">Metabolisme Sel</string>

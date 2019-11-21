@@ -8,6 +8,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import ict.umb.com.ictquiz.Mahasiswa;
 import ict.umb.com.ictquiz.Question;
 
 /**
@@ -23,8 +24,9 @@ public class DBAdapter extends SQLiteOpenHelper {
 
     // Table name
     private static final String TABLE_QUESTION = "question";
+    private static final String TABLE_MAHASISWA = "mahasiswa";
 
-    // Table Columns names
+    // Table soal
     private static final String KEY_ID = "id";
     private static final String KEY_QUESION = "question";
     private static final String KEY_ANSWER = "answer"; //correct option
@@ -32,6 +34,12 @@ public class DBAdapter extends SQLiteOpenHelper {
     private static final String KEY_OPTB= "optb"; //option b
     private static final String KEY_OPTC= "optc"; //option c
     private static final String KEY_OPTD= "optd"; //option d
+
+    // Table mahasiswa
+    private static final String ID_MAHASISWA = "id_mahasiswa";
+    private static final String USERNAME = "username";
+    private static final String PASSWORD = "password";
+    private static final String NAMA = "nama";
 
     private SQLiteDatabase myDatabase;
 
@@ -50,8 +58,14 @@ public class DBAdapter extends SQLiteOpenHelper {
         db.execSQL(sql);
 
         addQuestions();
-
     }
+
+    private static final String TABEL_MAHASISWA = "CREATE TABLE " +
+            TABLE_MAHASISWA + "("
+            + ID_MAHASISWA + " INTEGER PRIMARY KEY ,"
+            + USERNAME + " TEXT,"
+            + PASSWORD + " TEXT,"
+            + NAMA + " TEXT," + ")";
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldV, int newV) {
@@ -99,6 +113,54 @@ public class DBAdapter extends SQLiteOpenHelper {
         }
         // return quest list
         return quesList;
+    }
+
+    public List<Mahasiswa> getAllMahasiswa() {
+        List<Mahasiswa> MhsList = new ArrayList<Mahasiswa>();
+        String selectQuery = "SELECT * FROM " + TABLE_MAHASISWA;
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        if (cursor.moveToFirst()) {
+            do {
+                Mahasiswa mhs = new Mahasiswa();
+                mhs.set_id_mahasiswa(cursor.getString(0));
+                mhs.set_username(cursor.getString(1));
+                mhs.set_password(cursor.getString(2));
+                mhs.set_nama(cursor.getString(3));
+                MhsList.add(mhs);
+            } while (cursor.moveToNext());
+        }
+        db.close();
+        return MhsList;
+    }
+
+    public void CreateMahasiswa(Mahasiswa mdNotif) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(ID_MAHASISWA, mdNotif.get_id_mahasiswa());
+        values.put(USERNAME, mdNotif.get_username());
+        values.put(PASSWORD, mdNotif.get_password());
+        values.put(NAMA, mdNotif.get_nama());
+        db.insert(TABLE_MAHASISWA, null, values);
+        db.close();
+    }
+
+    public int UpdateMahasiswa(Mahasiswa mdNotif) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(ID_MAHASISWA, mdNotif.get_id_mahasiswa());
+        values.put(USERNAME, mdNotif.get_username());
+        values.put(PASSWORD, mdNotif.get_password());
+        values.put(NAMA, mdNotif.get_nama());
+        return db.update(TABLE_QUESTION, values, ID_MAHASISWA + " = ?",
+                new String[]{String.valueOf(mdNotif.get_id_mahasiswa())});
+    }
+
+    public void DeleteMahasiswa(Mahasiswa mdNotif) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_MAHASISWA, ID_MAHASISWA + " = ?",
+                new String[]{String.valueOf(mdNotif.get_id_mahasiswa())});
+        db.close();
     }
 
     private void addQuestions()

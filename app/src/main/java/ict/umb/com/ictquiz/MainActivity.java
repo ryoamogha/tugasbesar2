@@ -40,7 +40,15 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View v) {
                 Intent conceptIntent=new Intent(MainActivity.this,ConceptActivity.class);
                 startActivity(conceptIntent);
+            }
+        });
 
+        Button btnLogin=(Button) findViewById(R.id.btnLogin);
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent conceptIntent=new Intent(MainActivity.this,LoginActivity.class);
+                startActivity(conceptIntent);
             }
         });
 
