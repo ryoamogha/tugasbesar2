@@ -61,11 +61,13 @@ public class MahasiswaRead extends AppCompatActivity implements AdapterView.OnIt
         Object o = mListView.getItemAtPosition(i);
         Mahasiswa obj_itemDetails = (Mahasiswa)o;
         String Sid_mahasiswa = obj_itemDetails.get_id_mahasiswa();
+        String Snim = obj_itemDetails.get_nim();
         String Susername = obj_itemDetails.get_username();
         String Spassword = obj_itemDetails.get_password();
         String Snama = obj_itemDetails.get_nama();
         Intent goUpdel = new Intent(MahasiswaRead.this, MahasiswaUpDel.class);
         goUpdel.putExtra("Iid_mahasiswa", Sid_mahasiswa);
+        goUpdel.putExtra("Inim", Snim);
         goUpdel.putExtra("Iusername", Susername);
         goUpdel.putExtra("Ipassword", Spassword);
         goUpdel.putExtra("Inama", Snama);
@@ -80,6 +82,7 @@ public class MahasiswaRead extends AppCompatActivity implements AdapterView.OnIt
         for (Mahasiswa mh : mahasiswa) {
             Mahasiswa judulModel = new Mahasiswa();
             judulModel.set_id_mahasiswa(mh.get_id_mahasiswa());
+            judulModel.set_nim(mh.get_nim());
             judulModel.set_username(mh.get_username());
             judulModel.set_password(mh.get_password());
             judulModel.set_nama(mh.get_nama());

@@ -7,13 +7,11 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import ict.umb.com.ictquiz.Mahasiswa;
 import ict.umb.com.ictquiz.Question;
 
-/**
- * Created by adisae on 16/01/18.
- */
 
 public class DBAdapter extends SQLiteOpenHelper {
 
@@ -61,7 +59,12 @@ public class DBAdapter extends SQLiteOpenHelper {
                 +NAMA +" TEXT)";
 
         db.execSQL(sql_tb_soal);
-        db.execSQL(sql_tb_mahasiswa);
+        try {
+            db.execSQL(sql_tb_mahasiswa);
+        }catch (Exception e)
+        {
+            Log.e("ERROR", e.toString());
+        }
 
         addQuestions();
     }
@@ -125,7 +128,7 @@ public class DBAdapter extends SQLiteOpenHelper {
     public List<Mahasiswa> getAllMahasiswa() {
         List<Mahasiswa> MhsList = new ArrayList<Mahasiswa>();
         String selectQuery = "SELECT  * FROM " + TABLE_MAHASISWA;
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
         if (cursor.moveToFirst()) {
             do {
@@ -138,7 +141,6 @@ public class DBAdapter extends SQLiteOpenHelper {
                 MhsList.add(mhs);
             } while (cursor.moveToNext());
         }
-        db.close();
         return MhsList;
     }
 

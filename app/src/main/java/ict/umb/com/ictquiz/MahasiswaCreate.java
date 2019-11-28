@@ -41,11 +41,11 @@ public class MahasiswaCreate extends AppCompatActivity {
                             Toast.LENGTH_SHORT).show();
                 } else if (Spassword.equals("")){
                     Epassword.requestFocus();
-                    Toast.makeText(MahasiswaCreate.this, "Silahkan isi Merk",
+                    Toast.makeText(MahasiswaCreate.this, "Silahkan isi Password",
                             Toast.LENGTH_SHORT).show();
                 } else if (Snama.equals("")){
                     Enama.requestFocus();
-                    Toast.makeText(MahasiswaCreate.this, "Silahkan isi Tahun Buat",
+                    Toast.makeText(MahasiswaCreate.this, "Silahkan isi Nama",
                             Toast.LENGTH_SHORT).show();
                 } else {
                     Enim.setText("");
@@ -54,7 +54,7 @@ public class MahasiswaCreate extends AppCompatActivity {
                     Enama.setText("");
                     Toast.makeText(MahasiswaCreate.this, "Data telah berhasil ditambah",
                             Toast.LENGTH_SHORT).show();
-                    db.CreateMahasiswa(new Mahasiswa(null ,Snim, Susername, Spassword, Snama));
+                    db.CreateMahasiswa(new Mahasiswa(null, Snim, Susername, Spassword, Snama));
                     Intent a = new Intent(MahasiswaCreate.this, AdminActivity.class);
                     startActivity(a);
                 }
