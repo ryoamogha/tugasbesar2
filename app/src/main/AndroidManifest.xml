@@ -12,7 +12,8 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MahasiswaUpDel"></activity>
+        <activity android:name=".DaftarActivity"></activity>
+        <activity android:name=".MahasiswaUpDel" />
         <activity android:name=".MahasiswaCreate" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".AdminActivity" />

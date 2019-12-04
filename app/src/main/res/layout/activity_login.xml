@@ -31,6 +31,7 @@
                 android:layout_height="wrap_content">
 
                 <EditText
+                    android:id="@+id/edittext_username"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:drawableLeft="@drawable/ic_person_outline_black_24dp"
@@ -43,12 +44,13 @@
                 android:layout_height="wrap_content">
 
                 <EditText
+                    android:id="@+id/edittext_password"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:drawableLeft="@drawable/ic_lock_outline_black_24dp"
                     android:hint="Password"
-                    android:inputType="numberPassword" />
+                    android:inputType="text" />
             </android.support.design.widget.TextInputLayout>
 
             <Button
@@ -57,10 +59,20 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="22dp"
                 android:background="#d67601"
-                android:text="Sign in"
+                android:text="Login"
                 android:textAllCaps="false"
                 android:textColor="#fff"
                 android:textSize="18sp" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tvRegister"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="Tidak punya akun? Silahkan daftar"
+                android:clickable="true"
+                android:textSize="16dp" />
         </LinearLayout>
     </RelativeLayout>
 

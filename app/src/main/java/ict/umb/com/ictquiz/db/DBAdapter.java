@@ -23,6 +23,7 @@ public class DBAdapter extends SQLiteOpenHelper {
     // Table name
     private static final String TABLE_QUESTION = "question";
     private static final String TABLE_MAHASISWA = "mahasiswa";
+    private static final String TABLE_ADMIN = "admin";
 
     // Table soal
     private static final String KEY_ID = "id";
@@ -39,6 +40,7 @@ public class DBAdapter extends SQLiteOpenHelper {
     private static final String USERNAME = "username";
     private static final String PASSWORD = "password";
     private static final String NAMA = "nama";
+    private static final String LEVEL = "level";
 
     private SQLiteDatabase myDatabase;
 
@@ -57,7 +59,6 @@ public class DBAdapter extends SQLiteOpenHelper {
                 + ID_MAHASISWA + " INTEGER PRIMARY KEY AUTOINCREMENT, " + NIM
                 + " TEXT, " + USERNAME+ " TEXT, " +PASSWORD+ " TEXT, "
                 +NAMA +" TEXT)";
-
         db.execSQL(sql_tb_soal);
         try {
             db.execSQL(sql_tb_mahasiswa);
@@ -152,6 +153,7 @@ public class DBAdapter extends SQLiteOpenHelper {
         values.put(USERNAME, mdNotif.get_username());
         values.put(PASSWORD, mdNotif.get_password());
         values.put(NAMA, mdNotif.get_nama());
+        values.put(LEVEL, "user");
         db.insert(TABLE_MAHASISWA, null, values);
         db.close();
     }
@@ -223,6 +225,22 @@ public class DBAdapter extends SQLiteOpenHelper {
 
         // Inserting Row
         myDatabase.insert(TABLE_QUESTION, null, values);
+    }
+
+    public boolean checkUser(String username, String password){
+        String[] columns = { ID_MAHASISWA };
+        SQLiteDatabase db = getReadableDatabase();
+        String selection = USERNAME + "=?" + " and " + PASSWORD + "=?";
+        String[] selectionArgs = { username, password};
+        Cursor cursor = db.query(TABLE_MAHASISWA,columns,selection,selectionArgs,null,null,null);
+        int count = cursor.getCount();
+        cursor.close();
+        db.close();
+
+        if(count>0)
+            return  true;
+        else
+            return  false;
     }
 
 }
